@@ -37,4 +37,12 @@ plt.show()
 r2 = r2_score(y_test, predictions)
 print(f'R² Score: {r2}')
 
+new_data = pd.read_csv('Test2.csv')
+X_new = new_data.drop(columns=['GENE ID', 'LOCUS TAG', 'PRODUCT NAME', 'SCAFFOLD ID', 'READS COUNT', 'GENE SEQ LENGTH', 'COVERAGE', 'READS COUNT ANTISENSE', 'COVERAGE ANTISENSE', 'MEDIAN ANTISENSE'])
+new_predictions = model.predict(X_new)
+
+new_data['Predicted MEDIAN'] = new_predictions
+new_data.to_csv('test2_with_predictions.csv', index=False)
+
+print(new_predictions)
 
